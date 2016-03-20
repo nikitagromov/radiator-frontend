@@ -7,10 +7,32 @@
  *          you edit them, they are not updated again.
  */
 import { combineReducers } from 'redux';
+import  * as ActionTypes from './../constants/ActionTypes';
+import extend from 'extend';
 /* Populated by react-webpack-redux:reducer */
-const reducers = {
-  first: function (previousState, action) {
-    return 'state'
+
+
+
+
+function radiator(state = {}, action) {
+  switch (action.type) {
+    case ActionTypes.UPDATE_DATA:
+      return extend(state, action.data);
+
+    case ActionTypes.REQUEST_DATA:
+          return Object.assign({}, state, {});
+
+    case ActionTypes.RECEIVE_DATA:
+          return Object.assign({}, state, {
+            data: action.data,
+            lastUpdated: action.receivedAt
+          });
+
+    default:
+      return {};
   }
-};
-module.exports = combineReducers(reducers);
+}
+
+const rootReducer = combineReducers({radiator});
+
+export default rootReducer;

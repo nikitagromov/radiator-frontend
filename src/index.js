@@ -1,11 +1,18 @@
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './stores';
+import {fetchData} from './actions/Actions';
+import createStore from './stores';
 import App from './containers/App';
 import {Router, Route, Link, browserHistory} from 'react-router'
 
-const store = configureStore();
+const store = createStore();
+
+
+store.dispatch(fetchData()).then(() => console.log(store.getState()))
+
+
 //
 //render(
 //  <Provider store={store}>
@@ -15,7 +22,7 @@ const store = configureStore();
 //);
 
 render((<Provider store={store}><Router history={browserHistory}>
-  <Route path="/home"  component={App}/>
+  <Route path="/"  component={App}/>
   </Router>
   </Provider>
   ), document.getElementById('app'));
