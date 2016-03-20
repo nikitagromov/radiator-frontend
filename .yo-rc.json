@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "radiator",
+    "style": "less",
+    "postcss": true
+  }
+}
