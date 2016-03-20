@@ -2,29 +2,45 @@ require('normalize.css');
 require('styles/App.css');
 
 import React from 'react';
-import reactMixin from 'react-mixin';
-import mixin from './../helpers/mixin'
-
-let yeomanImage = require('../images/yeoman.png');
-
+import {fetchData} from './../actions/Actions';
+import { connect } from 'react-redux';
+import {interval} from './../decorators';
 
 
-
-@renderHello
+@interval(60 * 1000, fetchData)
 class AppComponent extends React.Component {
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
+
+  componentWillMount() {
+    this.activateInterval();
+    this.unsubscribe = this.context.store.subscribe(this.updateData.bind(this));
+  }
+
+  static getInitialState() {
+    return {
+      tree: null
+    }
+  }
+
+  componentWillUnmount(){
+    this.deactivateInterval();
+    this.unsubscribe();
+  }
+
+  updateData() {
+    var data = this.context.store.getState().radiator.data;
+    this.setState({tree: data});
+  }
+
+  render() {
+    if (!this.state || !this.state.tree) {
+      return (<div><span>Hello World</span></div>)
+    } else {
+      return (<div><span>{this.state.tree.buildStates.BUILD.state}</span></div>)
+    }
+  }
 }
-
-
-function renderHello(target) {
-  var renderMixin = mixin({
-    render: () => (<div>Hello World</div>)
-  });
-  return renderMixin(target);
-}
-
-AppComponent.defaultProps = {
-};
-
-
 
 export default AppComponent;

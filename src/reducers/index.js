@@ -9,6 +9,8 @@
 import { combineReducers } from 'redux';
 import  * as ActionTypes from './../constants/ActionTypes';
 import extend from 'extend';
+import {routerReducer} from 'react-router-redux'
+
 /* Populated by react-webpack-redux:reducer */
 
 
@@ -27,12 +29,11 @@ function radiator(state = {}, action) {
             data: action.data,
             lastUpdated: action.receivedAt
           });
-
     default:
       return state;
   }
 }
 
-const rootReducer = combineReducers({radiator});
+const rootReducer = combineReducers({radiator, routing: routerReducer});
 
 export default rootReducer;

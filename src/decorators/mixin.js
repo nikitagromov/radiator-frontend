@@ -4,11 +4,12 @@ function mixin (behaviour, sharedBehaviour = {}) {
   const typeTag = Symbol('isa');
 
   function _mixin (clazz) {
-    for (let property of instanceKeys)
+    for (let property of instanceKeys) {
       Object.defineProperty(clazz.prototype, property, {
         value: behaviour[property],
         writable: true
       });
+    }
     Object.defineProperty(clazz.prototype, typeTag, { value: true });
     return clazz;
   }
