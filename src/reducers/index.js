@@ -14,8 +14,6 @@ import {routerReducer} from 'react-router-redux'
 /* Populated by react-webpack-redux:reducer */
 
 
-
-
 function radiator(state = {}, action) {
   switch (action.type) {
     case ActionTypes.UPDATE_DATA:

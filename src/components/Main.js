@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 import {fetchData} from './../actions/Actions';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {interval} from './../decorators';
 
 
