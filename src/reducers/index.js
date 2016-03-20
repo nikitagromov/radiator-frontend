@@ -29,7 +29,7 @@ function radiator(state = {}, action) {
           });
 
     default:
-      return {};
+      return state;
   }
 }
 
