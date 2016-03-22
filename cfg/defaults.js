@@ -47,6 +47,10 @@ function getDefaultModules() {
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.(eot|ttf|svg)$/,
+        loader: 'file-loader'
       }
     ]
   };

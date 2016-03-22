@@ -11,11 +11,18 @@ import React, {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PieComponent from '../components/PieComponent';
+import InfoTextComponent from '../components/InfoTextComponent';
 /* Populated by react-webpack-redux:reducer */
+
 class App extends Component {
   render() {
     const {actions} = this.props;
-    return <PieComponent actions={actions}/>;
+    return <div className="container-fluid">
+      <div className="row">
+        <InfoTextComponent actions={actions}/>
+        <PieComponent  actions={actions}/>
+      </div>
+    </div>;
   }
 }
 /* Populated by react-webpack-redux:reducer

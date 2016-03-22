@@ -1,3 +1,6 @@
+require('bootstrap/dist/css/bootstrap.css');
+
+
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';

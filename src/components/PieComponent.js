@@ -38,23 +38,27 @@ class PieComponent extends React.Component {
 
   render() {
     if (!this.state || !this.state.tree) {
-      return (<div><span>Hello World</span></div>)
+      let result = [{value: 100, color: '#cc0033'}];
+      return (
+        <div className="col-md-2 pie">
+          <PieChart slices={result} />
+        </div>)
 
     } else {
-
-      var preparedObject = this.preparePieData(this.state.tree);
-
-
-      var result = [
+      var preparedObject = PieComponent.preparePieData(this.state.tree);
+      let result = [
         {value: preparedObject.passed, color: '#49ff00'}, //passed
-        {value: preparedObject.pending, color: '#FFCC11'}, //failed
-        {value: preparedObject.failed, color: '#cc0033'}  //errors
+        {value: preparedObject.pending, color: '#FFCC11'}, //pending
+        {value: preparedObject.failed, color: '#cc0033'}  //failed
       ];
-      return (<div className="pie"><PieChart slices={result} /></div>)
+      return (
+        <div className="col-md-2 pie">
+          <PieChart slices={result} />
+        </div>)
     }
   }
 
-  preparePieData(dataTree) {
+  static preparePieData(dataTree) {
     return {
       passed: dataTree.thucydidesTestStaistic.passed,
       pending: dataTree.thucydidesTestStaistic.pending,
