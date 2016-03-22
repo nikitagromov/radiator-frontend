@@ -10,12 +10,12 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Main from '../components/Main';
+import PieComponent from '../components/PieComponent';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
     const {actions} = this.props;
-    return <Main actions={actions}/>;
+    return <PieComponent actions={actions}/>;
   }
 }
 /* Populated by react-webpack-redux:reducer

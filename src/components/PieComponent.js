@@ -5,10 +5,12 @@ import React from 'react';
 import {fetchData} from './../actions/Actions';
 import {connect} from 'react-redux';
 import {interval} from './../decorators';
+import PieChart  from 'react-simple-pie-chart';
+
 
 
 @interval(60 * 1000, fetchData)
-class AppComponent extends React.Component {
+class PieComponent extends React.Component {
   static contextTypes = {
     store: React.PropTypes.object
   };
@@ -37,10 +39,30 @@ class AppComponent extends React.Component {
   render() {
     if (!this.state || !this.state.tree) {
       return (<div><span>Hello World</span></div>)
+
     } else {
-      return (<div><span>{this.state.tree.buildStates.BUILD.state}</span></div>)
+
+      var preparedObject = this.preparePieData(this.state.tree);
+
+
+      var result = [
+        {value: preparedObject.passed, color: '#49ff00'}, //passed
+        {value: preparedObject.pending, color: '#FFCC11'}, //failed
+        {value: preparedObject.failed, color: '#cc0033'}  //errors
+      ];
+      return (<div className="pie"><PieChart slices={result} /></div>)
     }
   }
+
+  preparePieData(dataTree) {
+    return {
+      passed: dataTree.thucydidesTestStaistic.passed,
+      pending: dataTree.thucydidesTestStaistic.pending,
+      failed: dataTree.thucydidesTestStaistic.failed
+    }
+  }
+
 }
 
-export default AppComponent;
+
+export default PieComponent;

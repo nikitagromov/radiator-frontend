@@ -1,7 +1,9 @@
 'use strict';
 let path = require('path');
 let defaultSettings = require('./defaults');
-let additionalPaths = [];
+let additionalPaths = [
+  './node_modules/'
+];
 module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
@@ -33,6 +35,7 @@ module.exports = {
       stores: `${ defaultSettings.srcPath }/stores/`,
       styles: `${ defaultSettings.srcPath }/styles/`,
       config: `${ defaultSettings.srcPath }/config/` + process.env.REACT_WEBPACK_ENV
+
     }
   },
   module: {},
